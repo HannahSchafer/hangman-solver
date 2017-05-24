@@ -1,4 +1,4 @@
-$(document).ready(function(){
+
 
 
 
@@ -9,6 +9,9 @@ function startGame(event) {
                                 var gameId = results.gameId;
                                 var word = results.word;
                                 var guessesLeft = results.guessesLeft;
+                                console.log(word);
+                                console.log(guessesLeft);
+                                console.log(gameId);
                                 $('#word-spot').html(word);
                                 $('#guesses-left').html(guessesLeft);
     
@@ -26,6 +29,9 @@ function checkStatus(event) {
                                 var word = results.word;
                                 var guessesLeft = results.guessesLeft;
                                 var active = results.active;
+                                console.log(word);
+                                console.log(guessesLeft);
+                                console.log(gameId);
                                 $('#word-spot').html(word);
                                 $('#guesses-left').html(guessesLeft);
                                 $('#active').html(active);
@@ -55,7 +61,21 @@ function playGame(event) {
 
 
 // event listener - calls ajax request 
-$('#submit-btn').on('click', startGame);
+$('#submit-btn').on('click', function() {
+        startGame(function() {
+            checkStatus;
+
+        });
+
+})
+
+// // event listener
+// $("#get-quote").on('click', function() {
+//     printTweets(function() {
+//         setTimeout(showGauge, 2000)
+//         setTimeout(showQuote, 4000)
+//     });
+// })
 
 
 
@@ -66,6 +86,3 @@ $('#submit-btn').on('click', startGame);
 
 
 
-
-
-});
