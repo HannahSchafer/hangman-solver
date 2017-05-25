@@ -42,6 +42,7 @@ def choose_bucket(word_length):
 # - use regex to pattern match all words from list into smaller list. take new frequency letter list. 
 # -repeat
 
+
 def start_game():
 
     email = 'schafer.hannah@gmail.com'
@@ -58,7 +59,6 @@ def start_game():
     return gameId
 
 
-
 def play_game(gameId):
     """Play hangman game given gameID from start_game."""
 
@@ -71,10 +71,10 @@ def play_game(gameId):
 
     word = response_dict['word']
     guessesLeft = response_dict['guessesLeft']
-    active = response_dict['active']
+    status = response_dict['status']
     msg = response_dict['msg']
 
-    return word
+    return word, guessesLeft
 
 
 
@@ -89,16 +89,24 @@ def check_status(gameId):
     gameId = response_dict['gameId']
     word = response_dict['word']
     guessesLeft = response_dict['guessesLeft']
-    active = response_dict['active']
+    status = response_dict['status']
 
-    return active
-
-
+    return status
 
 
-gameId1 = start_game()
-print play_game(gameId1)
+def choose_character():
+    """Choose character to send to 'play_game' function."""
+
+    return 'a'
 
 
+def master_game():
 
+    gameId = start_game()
+
+    output = play_game(gameId)
+
+    return output
+
+print master_game()
 
