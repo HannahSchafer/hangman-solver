@@ -16,11 +16,14 @@ def splashpage():
     return render_template("splashpage.html")
 
 
-@app.route('send-letter')
-def send_letter():
-    """AJAX response to send new letter choice to client."""
+# @app.route('/send-letter')
+# def send_letter():
+#     """AJAX response to send new letter choice to client."""
 
-    return jsonify()
+#     return jsonify()
+
+@app.route('/send-word-length')
+
     
     
 
