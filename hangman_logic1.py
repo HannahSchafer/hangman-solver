@@ -10,7 +10,8 @@ from operator import itemgetter
 
     
 def possible_words(word_length):
-    """Gets all possible words by word length via nltk corpus of all English words."""
+    """Gets all possible words by word length via nltk corpus of all English words.
+       Used as helper function in play_game function."""
 
     word_list = []
     # NLTK's dictionary of all words in English
@@ -24,7 +25,7 @@ def possible_words(word_length):
 
 
 def start_game():
-    """Start hangman game."""
+    """Start hangman game and return gameId."""
 
     email = 'schafer.hannah@gmail.com'
     url = "http://int-sys.usr.space/hangman/games"
@@ -33,8 +34,6 @@ def start_game():
     json_obj = response.text
     response_dict = json.loads(json_obj)
     gameId = response_dict['gameId']
-    # word = response_dict['word']
-    
     
     return gameId
 
@@ -54,22 +53,23 @@ def check_status(gameId):
 
 
 
-
 def play_game(gameId):
     """Play hangman game given gameID from start_game."""
 
+    # initialize status for use as while loop condition
     status_response = check_status(gameId)
     status = status_response['status']
 
     seen = set()
+
+    # most freuqently used letters in English, in reverse order (to pop from the end)
     start_letter = ['q', 'j', 'z', 'x', 'v', 'k', 'w', 'y', 'f', 'b', 'g', 'h', 'm', 'p', 'd', 'u', 'c', 'l', 's', 'n', 't', 'o', 'i', 'r', 'a', 'e']
     character = start_letter.pop()
 
-    while status == 'active':
 
+    while status == 'active':
     
         seen.add(character)
-        print seen
         
         # connecting to play_game API
         url="http://int-sys.usr.space/hangman/games/" + gameId + "/guesses"
@@ -82,10 +82,8 @@ def play_game(gameId):
         if 'word' in response_dict:
             word = response_dict['word']
             print word
-            print '77777777'
 
             word_length = len(word)
-            print word_length
             word_list = possible_words(word_length)
 
 
@@ -95,17 +93,17 @@ def play_game(gameId):
                 if let.isalpha():
                     idx_letters.append([i, let])
 
+            # narrow down potential words by matching index and letter from those already known
             if len(idx_letters) > 0:
-                # narrows down potential words by matching index and letter from those already known
                 potentials = []
                 for w in word_list:
                     for i, char in enumerate(w):
                         for item in idx_letters:
                             if item[0] == i and item[1] == char:
                                 potentials.append(w)
-                # setting new (narrowed) word list    
+
+                # setting new (narrowed) word list in each iteration   
                 word_list = potentials
-                print len(word_list)
 
                 # find most common letters among list of potenital words
                 counter = Counter(chain.from_iterable(imap(set, word_list)))
@@ -113,25 +111,24 @@ def play_game(gameId):
                 print 'most common letters:', most_common_lets
 
                 # send most common letter from potentials to game to play, that has not already been played
-                print 'seen:', seen
                 j=0
                 while most_common_lets[j] in seen:
                     j += 1
-                    # print most_common_lets[j]
-                    
 
+                # new character to play 
                 character = most_common_lets[j]
-            
-            
-   
-    
-        status_response = check_status(gameId)
-        status = status_response['status']
-        print status
-        
+
+                # check status to see if we are allowed another guess or if we break from the while loop
+                status = response_dict['status']
+                print 'play status', status
+
+        # continue going through start_letter list until find a letter to begin with    
+        elif 'word' not in response_dict and status == 'active':
+            character = start_letter.pop()
+
 
     return response_dict['msg']
-
+        
 
     
 gameId = start_game()
