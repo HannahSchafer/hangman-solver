@@ -2,18 +2,19 @@
 <html>
 <head>
   <title>Hangman Solver</title>
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="static/css/index.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="static/js/display_game.js"></script>
 
 </head>
 <body>
-  <h2>Hangman Solver</h2>
-  <div id="word-spot"></div>
-  <div id="guesses-left"></div>
-  <div id="active"></div>
-  <div id="msg"></div>
-  <form>
-    <input type="submit" value="submit" id="submit-btn">
-  </form>
+  <div class='center'>
+    <h2>Hangman Solver</h2><br>
+    <div id="word-spot" class='words'></div><br>
+    <div id="msg" class='words'></div>
+    <button id="button">Start Game!</button>
+  </div>
 </body>
 </html>
+

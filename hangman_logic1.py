@@ -97,7 +97,7 @@ def play_game(gameId):
         if 'word' in response_dict:
             word = response_dict['word']
             word_length = len(word)
-            
+
             # helper function to bring in list of all possible words based on word_length
             word_list = possible_words(word_length)
 

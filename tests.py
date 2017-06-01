@@ -23,3 +23,10 @@ class MyAppTests(TestCase):
 
         result = self.client.get('/play-game')
         self.assertEqual(result.status_code, 200)
+
+
+if __name__ == "__main__":
+#
+    import unittest
+
+    unittest.main()

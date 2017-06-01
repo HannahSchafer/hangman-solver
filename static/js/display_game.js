@@ -7,7 +7,7 @@ function playGame(event) {
                         var word = results.word;
                         var guessesLeft = results.guessesLeft;
                         var msg = results.msg;
-                        $('#word-spot').html(word);
+                        $('#word-spot').html('word:' + ' '+ word);
                         // $('#guesses-left').html(guessesLeft);
                         $('#msg').html(msg);
     
@@ -17,25 +17,11 @@ function playGame(event) {
 
 
 
-// function showQuote(event) {
-    
-//     $.post("/inspire-process.json", function(results) {
-//                                         var quote_content = results.quote;
-//                                         typeQuote(quote_content);
-//                                         $("#loader").hide();
-//                                         $("#give").hide();
-//                                         $("#tweet-container").hide();
-//                                         $("#fillgauge").hide();
-
-                                       
-                            
-//     });
-// }
-
-
-
 
 // event listener - calls ajax request 
-$('#submit-btn').on('click', playGame);
+$('#button').on('click', playGame);
+
+
+
 
 });

@@ -32,7 +32,7 @@ def send_play_game():
 
 if __name__ == "__main__":
 
-    app.debug = True
+    app.debug = False
 
     # Use the DebugToolbar
     DebugToolbarExtension(app)

@@ -1,0 +1,25 @@
+body {
+    background-image: url("white_brick_wall.png");
+    font-family: Verdana;
+  
+}
+
+
+.center {
+
+    text-align: center;
+    margin-top: 60px;
+
+}
+
+
+.words{
+
+    font-weight: bold;
+    font-size: 200%;
+}
+
+#button {
+
+    margin: 20px;
+}
