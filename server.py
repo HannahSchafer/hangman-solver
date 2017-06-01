@@ -3,8 +3,9 @@
 from flask import (Flask, jsonify, render_template, request)
 from jinja2 import StrictUndefined
 from flask_debugtoolbar import DebugToolbarExtension
+from hangman_logic1 import start_game, play_game
 
-
+app = Flask(__name__)
 # Required to use Flask sessions and debug toolbar
 app.secret_key = "752398u5&9563!!hml"
 
@@ -13,16 +14,17 @@ app.secret_key = "752398u5&9563!!hml"
 def splashpage():
     """Mainpage."""
 
-    return render_template("splashpage.html")
+    return render_template("index.html")
 
 
-# @app.route('/send-letter')
-# def send_letter():
-#     """AJAX response to send new letter choice to client."""
+@app.route('/play-game')
+def send_play_game():
+    """Responds to ajax request to start and play game."""
 
-#     return jsonify()
+    gameId = start_game()
+    play_dict = play_game(gameId)
 
-@app.route('/send-word-length')
+    return jsonify(play_dict)
 
     
     
