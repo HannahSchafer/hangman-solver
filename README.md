@@ -15,9 +15,9 @@ Hangman Solver is a web app that solves the hangman game on average 44.8% of the
 ## Design Methodology
 
 1) Choose character from list of most frequenly used letters in the English language until a first letter match
-2) Compare letter(s) and letter indexes to word list drawn in from NLTK with words of same length as game word
+2) Pattern matching: compare letter(s) and letter indexes to word list drawn in from NLTK with words of same length as game word
 3) Make list of most frequently used letters from refined list of potential words
-4) In each iteration, potential word list is refined, as well as most frequently used letters of words in potential word list
+4) In each iteration, based on new pattern match of letters/indexes, the potential word list is refined, as well as most frequently used letters of words in potential word list
 
 ---
 
