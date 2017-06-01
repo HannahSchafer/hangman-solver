@@ -14,7 +14,6 @@ function playGame(event) {
 
 
 
-
 // event listener - calls ajax request 
 $('#button').on('click', playGame);
 
