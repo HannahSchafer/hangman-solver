@@ -1,7 +1,6 @@
 """The hangman solver flask app server file."""
 
 from flask import (Flask, jsonify, render_template, request)
-from jinja2 import StrictUndefined
 from flask_debugtoolbar import DebugToolbarExtension
 from hangman_logic1 import start_game, play_game
 
